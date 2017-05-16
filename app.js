@@ -11,11 +11,19 @@ var firstAndPike = {
     return math.floor((this.MaxCust - this.MinCust) * math.random() + 1);
   },
   CookiePerCust: function sumHrTotal() {
-    for (var i=6; i < 12; i++) {
-      return this.CustPerHr * this.AvgCookieSale;
-    }
-    for (var i=1; i <= 8; i++) {
-      return this.CustPerHr * this.AvgCookieSale;
+    // for (var i=6; i <= 20; i++) {
+    //   return this.CustPerHr * this.AvgCookieSale;
+
+      var container = document.createElement('div');
+      container.innerHTML = '<p>' + '1st and Pike' + '</p>';
+
+      var list = document.createElement('ul');
+      var listArr = [];
+
+//need make an array that shows opening hours and cookies sold
+      for (var i=6; i <= 20; i++) {
+        listArr.push('<li>' + )
+
     }
   },
   function shop() {
