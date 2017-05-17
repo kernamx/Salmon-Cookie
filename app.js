@@ -14,18 +14,16 @@ var firstAndPike = {
   },
 //Calculate and store the amounts of avg cookies for each hour and random number of customers
 //build an equation inside the for loop.  usiing for loop to run the equation through each hour.
-
+//in the for loop there is also Calculate the total when the loop runs each time
   cookiePerCust: function() {
     for (var i=0; i < 15; i++) {
       this.cookiesEachHour.push(Math.floor(this.custPerHr() * this.avgCookieSale));
       var sumCookies = Math.floor(this.custPerHr() * this.avgCookieSale);
       this.total = this.total + sumCookies;
-      console.log('total: ', this.total);
+      //console.log('total: ', this.total);
     }
     this.total;
-    console.log('total: ', this.total);
-
-    //return this.total + this.cookiesEachHour;
+    //console.log('total: ', this.total);
   }
 };
 firstAndPike.cookiePerCust();
@@ -52,7 +50,29 @@ function salmonShop() {
 salmonShop();
 
 
+//constructor Method
 
+function shop(name, custPerHr, cookiePerCust, total) {
+  this.name = name;
+  this.custPerHr = custPerHr;
+  this.cookiePerCust = cookiePerCust;
+  this.total = total;
+}
+//stop here take a break
+var firstAndPike = new salmonShop('firstAndPike')
+
+var table = document.getElementById('shell');
+var data = [];
+
+//use for loop
+
+var new_row;
+
+for (var j=0; j < data.length; j++) {
+  new_row = document.createElement('tr');
+  new_row.innerHTML = data[j];
+  table.appendChild(new_row);
+}
 
 
 // var seaTacAirport = {
