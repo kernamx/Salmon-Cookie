@@ -1,7 +1,5 @@
 'use strict';
 
-var location = ['First and Pike', 'SeaTac Airport', 'Seattle Center', 'Capitol Hill', 'Alki'];
-
 
 var firstAndPike = {
   name: '1st and Pike',
@@ -9,50 +7,45 @@ var firstAndPike = {
   maxCust: 65,
   avgCookieSale: 6.3,
   cookiesEachHour: [],
+  total: 0,
   custPerHr: function() {
     return Math.floor((this.maxCust - this.minCust) * Math.random() + 1);
   },
 //Calculate and store the amounts of avg cookies for each hour and random number of customers
 //build an equation inside the for loop.  usiing for loop to run the equation through each hour.
   cookiePerCust: function() {
-    for (var i=0; i <= 15; i++) {
-      this.cookiesEachHour.push(this.custPerHr() * this.avgCookieSale);
-    }
-  },
+    for (var i=0; i < 15; i++) {
+      this.cookiesEachHour.push(Math.floor(this.custPerHr() * this.avgCookieSale));
+      this.total++;
+      console.log('cookiesEachHour', cookiesEachHour);
+    },
+    return this.total + this.cookiesEachHour;
+    console.log('total', total);
+  }
 };
 firstAndPike.cookiePerCust();
 
 //display the values of each array as unordered lists in the browser
 //using for loop to loop each hour and show as list on dom
-// function salmonShop(){
-//   var container = document.createElement('div');
-//   container.innerHTML = '<p>' + '1st and Pike' + '</p>';
-//
-//   var list = document.createElement('ol');
-//   var listArr = [];
-//
-//   for (var i=0; i <= 15; i++) {
-//     listArr.push('<li>' + firstAndPike.cookiePerCust[i] + '</li>');
-//   }
-//
-//   var full_list = listArr.join('');
-//   list.innerHTML = full_list;
-//   document.body.appendChild(list);
-// }
+function salmonShop() {
+  var container = document.createElement('div');
+  container.innerHTML = '<p>' + firstAndPike.name + '</p>';
+  document.body.appendChild(container);
 
-// function openHR() {
-//   var container = document.createElement('div');
-//     container.innerHTML = '<p>' + '1st and Pike' + '</p>';
-//   var list = document.createElement('ul');
-//   var listArr = [];
-//
-//     for (var i=0; i <= 15; i++) {
-//         listArr.push('<li>' + cookiePerCust[i] +  '</li>');
-//     }
-//     var full_list = listArr.join('');
-//     list.innerHTML = full_list;
-//     document.body.appendChild(list);
-//   }
+  var list = document.createElement('ul');
+  var list_Arr = [];
+
+  for (var i=0; i < 15; i++) {
+    list_Arr.push('<li>' + ': ' + firstAndPike.cookiesEachHour[i] + ' cookies' + '</li>');
+  }
+
+  var full_list = list_Arr.join('');
+
+  list.innerHTML = full_list;
+  document.body.appendChild(list);
+}
+salmonShop();
+
 
 
 
