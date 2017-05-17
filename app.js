@@ -8,19 +8,24 @@ var firstAndPike = {
   avgCookieSale: 6.3,
   cookiesEachHour: [],
   total: 0,
+  time: ['6am', '7am', '8am', '9am','10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
   custPerHr: function() {
     return Math.floor((this.maxCust - this.minCust) * Math.random() + 1);
   },
 //Calculate and store the amounts of avg cookies for each hour and random number of customers
 //build an equation inside the for loop.  usiing for loop to run the equation through each hour.
+
   cookiePerCust: function() {
     for (var i=0; i < 15; i++) {
       this.cookiesEachHour.push(Math.floor(this.custPerHr() * this.avgCookieSale));
-      this.total++;
-      console.log('cookiesEachHour', cookiesEachHour);
-    },
-    return this.total + this.cookiesEachHour;
-    console.log('total', total);
+      var sumCookies = Math.floor(this.custPerHr() * this.avgCookieSale);
+      this.total = this.total + sumCookies;
+      console.log('total: ', this.total);
+    }
+    this.total;
+    console.log('total: ', this.total);
+
+    //return this.total + this.cookiesEachHour;
   }
 };
 firstAndPike.cookiePerCust();
@@ -36,7 +41,7 @@ function salmonShop() {
   var list_Arr = [];
 
   for (var i=0; i < 15; i++) {
-    list_Arr.push('<li>' + ': ' + firstAndPike.cookiesEachHour[i] + ' cookies' + '</li>');
+    list_Arr.push('<li>' + firstAndPike.time[i] + ': ' + firstAndPike.cookiesEachHour[i] + ' cookies' + '</li>');
   }
 
   var full_list = list_Arr.join('');
