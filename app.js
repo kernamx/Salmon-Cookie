@@ -1,7 +1,7 @@
 (function () {
   'use strict';
+  var table = document.getElementById('shell');
 
-  var hours = ['6am', '7am', '8am', '9am','10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
   function Shop(name, minCust, maxCust, avgCookieSale) {
     this.name = name;
@@ -10,42 +10,25 @@
     this.avgCookieSale = avgCookieSale;
     this.cookiesEachHour = [];
     this.total = 0;
-    this.custPerHr = function(){
+    Shop.prototype.custPerHr = function(){
       return Math.floor((this.maxCust - this.minCust) * Math.random() + 1);
     };
-    this.cookiePerCust = function() {
+
+    Shop.prototype.cookiePerCust = function() {
       for (var i=0; i < 15; i++) {
         this.cookiesEachHour.push(Math.floor(this.custPerHr() * this.avgCookieSale));
         var sumCookies = Math.floor(this.custPerHr() * this.avgCookieSale);
         this.total = this.total + sumCookies;
       }
+      this.cookiesEachHour.push('<td>' + this.total + '</td>');
     };
 
-    //function that constructs tablerow to display store hours
-    function buildHeader() {
-      //referencing thead element using it's ID and assigning it as the variable of header
-      var header = document.getElementById('hours-header');
-      console.log('header', header);
-      //created a table-row element and assigned the as the value of hoursRow variable
-      var hoursRow = document.createElement('tr');
-      console.log('hoursRow', hoursRow);
-      //append hours-row to header as a child element
-      header.appendChild(hoursRow);
-    }
-    buildHeader();
-
-
-    Shop.prototype.getTotal = function() {
-      return this.cookiePerCust();
+    Shop.prototype.render = function() {
+      var row = document.createElement('tr');
+      row.innerHTML = this.cookiesEachHour.join('');
+      table.appendChild(row);
     };
-  //use a for loop to itirate through the hours array in order to create and append td elements to hoursRow showing business hours
-    for(var i=0; i < hours.length; i++) {
-      //create td element for each index of hours array in order to append them to table row
-      var hourCell = document.createElement('td');
-      console.log('hourCell', hourCell);
-      //sets specific index of hours as innerHTMLof the previously created hourCell
-      hourCell.innerHTML = hours[i];
-    }
+
     var firstAndPike = new Shop('1stAndPike', 23, 65, 6.3);
     var seaTacAirport = new Shop('SeaTacAirport', 3, 24, 1.2);
     var seattleCenter = new Shop('SeattleCenter', 11, 38, 3.7);
@@ -53,6 +36,55 @@
     var alki = new Shop('Alki', 2, 16, 4.6);
 
     var placeShop = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
+
+    function getSalesRender() {
+      for (var k=0; k < 5; k++) {
+        placeShop[k].cookiesEachHour();
+        placeShop[k].render();
+      }
+    }
+    getSalesRender();
+
+
+
+    //function that constructs tablerow to display store hours
+    // function buildHeader() {
+    //   //referencing thead element using it's ID and assigning it as the variable of header
+    //   var header = [];
+    //   var hours = ['6am', '7am', '8am', '9am','10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+    //
+    //   for (var i=0; i < hours.length; i++) {
+    //     header.push('<td>' + hours[i] + '</td>');
+    //   }
+    //
+    //   var fullRow = header.join('');
+    //   console.log('header: ', header);
+    //   header = document.createElement('thead');
+    //   header.innerHTML = fullRow;
+    //   document.body.appendChild(header);
+    // }
+    //
+    // buildHeader();
+    //
+    // Shop.prototype.getTotal = function() {
+    //   return this.cookiePerCust();
+    // };
+    //
+    // Shop.prototype.listSales = function() {
+    //   var listArr = [];
+    //   var cookieArr = [];
+    //
+    //   listArr.push('<td>' + this.name + '</td>');
+    //
+    //   for (var i=0; i < 15; i++) {
+    //     listArr.push('<td>' + this.cookiePerCust() + '</td>');
+    //     cookieArr.push(this.cookiePerCust());
+    //   }
+    // };
+
+
+
+
 
   //   var table = document.getElementById('shell');
   //   var data = [];
