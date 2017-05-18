@@ -1,26 +1,54 @@
 'use strict';
 
 
-function Shop(name, minCust, maxCust, custPerHr, cookiePerCust) {
+function Shop(name, minCust, maxCust, avgCookieSale) {
   this.name = name;
   this.minCust = minCust;
   this.maxCust = maxCust;
+  this.avgCookieSale = avgCookieSale;
+  this.cookiesEachHour = [];
+  this.total = 0;
   this.custPerHr = function(){
     return Math.floor((this.maxCust - this.minCust) * Math.random() + 1);
-  },
-  this.cookiePerCust = function {
+  };
+  this.cookiePerCust = function() {
     for (var i=0; i < 15; i++) {
       this.cookiesEachHour.push(Math.floor(this.custPerHr() * this.avgCookieSale));
       var sumCookies = Math.floor(this.custPerHr() * this.avgCookieSale);
       this.total = this.total + sumCookies;
     }
+  };
+}
+
+var firstAndPike = new Shop('1stAndPike', 23, 65, 6.3);
+var seaTacAirport = new Shop('SeaTacAirport', 3, 24, 1.2);
+var seattleCenter = new Shop('SeattleCenter', 11, 38, 3.7);
+var capitolHill = new Shop('CapitolHill', 20, 38, 2.3);
+var alki = new Shop('Alki', 2, 16, 4.6);
+
+var table = document.getElementById('shell');
+var row;
+var data = [];
+
+function createTable(loc) {
+  loc.cookiePerCust();
+  row = document.createElement('tr');
+  for(var i=0; i < loc.cookiesEachHour.length; i++) {
+    row.innerHTML = '<td>' + loc.cookiesEachHour[i] + '</td>';
+    console.log(loc.cookiesEachHour[i]);
   }
-//stop here take a break
-var firstAndPike = new Shop('1stAndPike', 23, 65, 6.3, custPerHr(), cookiePerCust());
-var seaTacAirport = new Shop('SeaTacAirport', 3, 24, 1.2, custPerHr(), cookiePerCust());
-var seattleCenter = new Shop('SeattleCenter', 11, 38, 3.7, custPerHr(), cookiePerCust());
-var capitolHill = new Shop('CapitolHill', 20, 38, 2.3, custPerHr(), cookiePerCust());
-var alki = new Shop('Alki', 2, 16, 4.6, custPerHr(), cookiePerCust());
+
+
+  table.appendChild(row);
+}
+createTable();
+var new_row;
+
+for (var j=0; j < data.length; j++) {
+  new_row = document.createElement('tr');
+  new_row.innerHTML = data[j];
+  table.appendChild(new_row);
+}
 // var firstAndPike = {
 //   name: '1st and Pike',
 //   minCust: 23,
@@ -70,22 +98,8 @@ var alki = new Shop('Alki', 2, 16, 4.6, custPerHr(), cookiePerCust());
 // salmonShop();
 
 
-//constructor Method
 
 
-
-var table = document.getElementById('shell');
-var data = [];
-
-//use for loop
-
-var new_row;
-
-for (var j=0; j < data.length; j++) {
-  new_row = document.createElement('tr');
-  new_row.innerHTML = data[j];
-  table.appendChild(new_row);
-}
 
 
 // var seaTacAirport = {
