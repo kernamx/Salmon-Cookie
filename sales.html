@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>salmon</title>
+    <title>salmon cookies</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <p>Salmon Shop</p>
+    <p>Salmon Cookie Shop</p>
+    <form id="sample_form">
+      <fieldset>
+        <label for="one">Store Name</label>
+        <input type="text" one="name" placeholder="Search by Store Name" required>
+      </fieldset>
+
+      <fieldset>
+        <label for="two">MinCust</label>
+        <input type="text" two="Min Customers" placeholder="Min Customers" required>
+      </fieldset>
+
+      <fieldset>
+        <label for="three">MaxCust</label>
+        <input type="text" three="Max Customers" placeholder="Max Customers" required>
+      </fieldset>
+
+      <fieldset>
+        <label for="four">avgCookieSale</label>
+        <input type="text" four="Avg. Cookies Sale" placeholder="Avg. Cookies Sale" required>
+      </fieldset>
+
+      <button id="submit-btn" type="submit">Add Store</button>
+    </form>
     <table>
       <thead id="header">
         <td></td>
