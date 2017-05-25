@@ -62,7 +62,7 @@ function formData(event) {
   var minCust = parseInt(event.target.minCust.value);
   var maxCust = parseInt(event.target.maxCust.value);
   var avgCookieSale = parseInt(event.target.avgCookieSale.value);
-  //console.log(name, minCust, maxCust, avgCookieSale);
+  
   var formShop = new Shop(name, minCust, maxCust, avgCookieSale);
   formShop.cookiePerCust();
   formShop.render();
